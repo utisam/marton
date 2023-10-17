@@ -1,4 +1,4 @@
-import { PhrasingContent } from 'remark-github/lib';
+import { PhrasingContent } from 'mdast';
 import { RichTextAnnotations, RichTextItemRequest } from '../notionTypes';
 
 export function phrasingContentToRichText(child: PhrasingContent): RichTextItemRequest[] {
