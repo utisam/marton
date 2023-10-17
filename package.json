@@ -9,7 +9,8 @@
     "build": "run-p build:*",
     "build:esbuild": "node build.js",
     "build:types": "tsc --declaration --emitDeclarationOnly --declarationDir './dist'",
-    "test": "node --experimental-vm-modules node_modules/.bin/jest"
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
+    "test:watch": "npm run test -- --watch"
   },
   "author": "",
   "license": "MIT",

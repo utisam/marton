@@ -31,5 +31,5 @@ export function headingToBlocks(child: Heading): Iterable<HeadingObjectRequest> 
 }
 
 function phrasingContentsToRichText(child: Heading): RichTextItemRequest[] {
-    return child.children.map(phrasingContentToRichText);
+    return child.children.flatMap(phrasingContentToRichText);
 }

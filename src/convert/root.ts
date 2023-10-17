@@ -1,7 +1,8 @@
-import { Root, RootContent } from 'mdast';
-import { BlockObjectRequest } from '../notionTypes';
+import { Root, RootContent, Paragraph } from 'mdast';
+import { BlockObjectRequest, RichTextItemRequest } from '../notionTypes';
 import { headingToBlocks } from './heading';
 import { paragraphToBlocks } from './paragraph';
+import { phrasingContentToRichText } from './phrasing';
 
 export function* rootToBlocks(root: Root): Iterable<BlockObjectRequest> {
     for (const child of root.children) {
@@ -18,3 +19,10 @@ function rootContentToBlocks(child: RootContent): Iterable<BlockObjectRequest> {
     throw new Error(`Function not implemented: ${child.type}`);
 }
 
+export function rootToRichText(root: Root): Iterable<RichTextItemRequest> {
+    const first = root.children[0];
+    if (first?.type === 'paragraph') {
+        return (first as Paragraph).children.flatMap(phrasingContentToRichText);
+    }
+    throw new Error(`Root content must be a paragraph: ${first?.type}`);
+}

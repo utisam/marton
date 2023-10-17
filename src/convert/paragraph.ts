@@ -8,7 +8,7 @@ export function paragraphToBlocks(child: Paragraph): Iterable<ParagraphObjectReq
             object: 'block',
             type: 'paragraph',
             paragraph: {
-                rich_text: child.children.map(phrasingContentToRichText),
+                rich_text: child.children.flatMap(phrasingContentToRichText),
             },
         },
     ];

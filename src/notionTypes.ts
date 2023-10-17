@@ -12,3 +12,4 @@ export type HeadingObjectRequest = Heading1ObjectRequest | Heading2ObjectRequest
 export type ParagraphObjectRequest = Expand<BlockObjectRequest & { type: 'paragraph' }>;
 
 export type RichTextItemRequest = ParagraphObjectRequest['paragraph']['rich_text'][number];
+export type RichTextAnnotations = NonNullable<(RichTextItemRequest & { type: 'text' })['annotations']>;
