@@ -133,6 +133,22 @@ describe('markdownToRichText', () => {
             },
         ]);
     });
+    test('convert link', () => {
+        const result = markdownToRichText("This is [link](http://example.com)", { unsupportedError: true });
+        expect(result).toStrictEqual([
+            {
+                "type": "text",
+                "text": { "content": "This is " },
+            },
+            {
+                "type": "text",
+                "text": {
+                    "content": "link",
+                    "link": { "url": "http://example.com" },
+                },
+            },
+        ]);
+    });
     test('convert nested', () => {
         const result = markdownToRichText("This is **~~delete~~ in bold**", { unsupportedError: true });
         expect(result).toStrictEqual([

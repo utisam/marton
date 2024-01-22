@@ -3,35 +3,45 @@ import { RichTextAnnotations, RichTextItemRequest } from '../notionTypes';
 import Option, { nodeToMarkdown, unsupportedNode } from '../option';
 
 export function phrasingContentToRichText(child: PhrasingContent, option?: Option): RichTextItemRequest[] {
-    if (child.type === 'text') {
-        return [{
-            type: 'text',
-            text: { content: child.value },
-        }];
-    } else if (child.type === 'inlineCode') {
-        return [{
-            type: 'text',
-            text: { content: child.value },
-            annotations: { code: true },
-        }];
-    } else if (child.type === 'emphasis') {
-        return child.children
-            .flatMap((child) => phrasingContentToRichText(child, option))
-            .map(addAnnotation({ italic: true }, option));
-    } else if (child.type === 'strong') {
-        return child.children
-            .flatMap((child) => phrasingContentToRichText(child, option))
-            .map(addAnnotation({ bold: true }, option));
-    } else if (child.type === 'delete') {
-        return child.children
-            .flatMap((child) => phrasingContentToRichText(child, option))
-            .map(addAnnotation({ strikethrough: true }, option));
+    switch (child.type) {
+        case 'text':
+            return [{
+                type: 'text',
+                text: { content: child.value },
+            }];
+        case 'inlineCode':
+            return [{
+                type: 'text',
+                text: { content: child.value },
+                annotations: { code: true },
+            }];
+        case 'emphasis':
+            return child.children
+                .flatMap((child) => phrasingContentToRichText(child, option))
+                .map(addAnnotation({ italic: true }, option));
+        case 'strong':
+            return child.children
+                .flatMap((child) => phrasingContentToRichText(child, option))
+                .map(addAnnotation({ bold: true }, option));
+        case 'delete':
+            return child.children
+                .flatMap((child) => phrasingContentToRichText(child, option))
+                .map(addAnnotation({ strikethrough: true }, option));
+        case 'link':
+            return [{
+                type: 'text',
+                text: {
+                    content: child.children.map(child => nodeToMarkdown(child, option)).join(' '),
+                    link: { url: child.url },
+                },
+            }];
+        default:
+            unsupportedNode(child, option);
+            return [{
+                type: 'text',
+                text: { content: nodeToMarkdown(child, option) },
+            }];
     }
-    unsupportedNode(child, option);
-    return [{
-        type: 'text',
-        text: { content: nodeToMarkdown(child, option) },
-    }];
 }
 
 function addAnnotation(annotations: RichTextAnnotations, option?: Option): (richText: RichTextItemRequest) => RichTextItemRequest {
