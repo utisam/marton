@@ -5,6 +5,7 @@ import { paragraphToBlocks } from './paragraph';
 import { phrasingContentToRichText } from './phrasing';
 import Option, { unsupportedNode } from '../option';
 import { blockquoteToBlocks } from './blockquote';
+import { thematicBreakToBlocks } from './thematicBreak';
 
 export function* rootToBlocks(root: Root, option?: Option): Iterable<BlockObjectRequest> {
     for (const child of root.children) {
@@ -18,6 +19,8 @@ function rootContentToBlocks(child: RootContent, option?: Option): Iterable<Bloc
             return blockquoteToBlocks(child, option);
         case 'heading':
             return headingToBlocks(child, option);
+        case 'thematicBreak':
+            return thematicBreakToBlocks(child, option);
         case 'paragraph':
             return paragraphToBlocks(child, option);
         default:

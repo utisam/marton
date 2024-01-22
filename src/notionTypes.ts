@@ -4,6 +4,8 @@ export type { BlockObjectRequest };
 
 type Expand<T> = T extends infer O ? { [K in keyof O]: O[K] } : never;
 
+export type DividerObjectRequest = Expand<BlockObjectRequest & { type: 'divider' }>;
+
 export type Heading1ObjectRequest = Expand<BlockObjectRequest & { type: 'heading_1' }>;
 export type Heading2ObjectRequest = Expand<BlockObjectRequest & { type: 'heading_2' }>;
 export type Heading3ObjectRequest = Expand<BlockObjectRequest & { type: 'heading_3' }>;

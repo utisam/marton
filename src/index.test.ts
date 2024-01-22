@@ -7,7 +7,10 @@ describe('markdownToBlocks', () => {
 
 This is body.
 
+---
+
 > This is quote.
+
         `.trim(), { unsupportedError: true });
         expect(result).toStrictEqual([
             {
@@ -26,6 +29,10 @@ This is body.
                         { "text": { "content": "This is body." }, "type": "text" },
                     ]
                 }, "type": "paragraph"
+            },
+            {
+                "type": "divider",
+                "divider": {},
             },
             {
                 "quote": {
