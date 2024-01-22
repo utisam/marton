@@ -25,6 +25,8 @@
   },
   "dependencies": {
     "@notionhq/client": "^2.2.13",
+    "mdast-util-gfm": "^3.0.0",
+    "mdast-util-to-markdown": "^2.1.0",
     "remark-gfm": "^4.0.0",
     "remark-parse": "^11.0.0"
   }

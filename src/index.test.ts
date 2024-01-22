@@ -6,7 +6,9 @@ describe('markdownToBlocks', () => {
 # Title
 
 This is body.
-        `.trim());
+
+> This is quote.
+        `.trim(), { unsupportedError: true });
         expect(result).toStrictEqual([
             {
                 "heading_1": {
@@ -25,13 +27,24 @@ This is body.
                     ]
                 }, "type": "paragraph"
             },
+            {
+                "quote": {
+                    "rich_text": [
+                        {
+                            "text": { "content": "This is quote." },
+                            "type": "text",
+                        },
+                    ],
+                },
+                "type": "quote",
+            },
         ]);
     });
 });
 
 describe('markdownToRichText', () => {
     test('convert text', () => {
-        const result = markdownToRichText("This is text");
+        const result = markdownToRichText("This is text", { unsupportedError: true });
         expect(result).toStrictEqual([
             {
                 "type": "text",
@@ -40,7 +53,7 @@ describe('markdownToRichText', () => {
         ]);
     });
     test('convert inlineCode', () => {
-        const result = markdownToRichText("This is `inlineCode`");
+        const result = markdownToRichText("This is `inlineCode`", { unsupportedError: true });
         expect(result).toStrictEqual([
             {
                 "type": "text",
@@ -54,7 +67,7 @@ describe('markdownToRichText', () => {
         ]);
     });
     test('convert emphasis', () => {
-        const result = markdownToRichText("This is *emphasis*");
+        const result = markdownToRichText("This is *emphasis*", { unsupportedError: true });
         expect(result).toStrictEqual([
             {
                 "type": "text",
@@ -68,7 +81,7 @@ describe('markdownToRichText', () => {
         ]);
     });
     test('convert bold', () => {
-        const result = markdownToRichText("This is **bold**");
+        const result = markdownToRichText("This is **bold**", { unsupportedError: true });
         expect(result).toStrictEqual([
             {
                 "type": "text",
@@ -82,7 +95,7 @@ describe('markdownToRichText', () => {
         ]);
     });
     test('convert delete', () => {
-        const result = markdownToRichText("This is ~~delete~~");
+        const result = markdownToRichText("This is ~~delete~~", { unsupportedError: true });
         expect(result).toStrictEqual([
             {
                 "type": "text",
@@ -96,7 +109,7 @@ describe('markdownToRichText', () => {
         ]);
     });
     test('convert nested', () => {
-        const result = markdownToRichText("This is **~~delete~~ in bold**");
+        const result = markdownToRichText("This is **~~delete~~ in bold**", { unsupportedError: true });
         expect(result).toStrictEqual([
             {
                 "type": "text",

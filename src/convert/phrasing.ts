@@ -1,7 +1,8 @@
 import { PhrasingContent } from 'mdast';
 import { RichTextAnnotations, RichTextItemRequest } from '../notionTypes';
+import Option, { nodeToMarkdown, unsupportedNode } from '../option';
 
-export function phrasingContentToRichText(child: PhrasingContent): RichTextItemRequest[] {
+export function phrasingContentToRichText(child: PhrasingContent, option?: Option): RichTextItemRequest[] {
     if (child.type === 'text') {
         return [{
             type: 'text',
@@ -15,24 +16,28 @@ export function phrasingContentToRichText(child: PhrasingContent): RichTextItemR
         }];
     } else if (child.type === 'emphasis') {
         return child.children
-            .flatMap(phrasingContentToRichText)
-            .map(addAnnotation({ italic: true }));
+            .flatMap((child) => phrasingContentToRichText(child, option))
+            .map(addAnnotation({ italic: true }, option));
     } else if (child.type === 'strong') {
         return child.children
-            .flatMap(phrasingContentToRichText)
-            .map(addAnnotation({ bold: true }));
+            .flatMap((child) => phrasingContentToRichText(child, option))
+            .map(addAnnotation({ bold: true }, option));
     } else if (child.type === 'delete') {
         return child.children
-            .flatMap(phrasingContentToRichText)
-            .map(addAnnotation({ strikethrough: true }));
+            .flatMap((child) => phrasingContentToRichText(child, option))
+            .map(addAnnotation({ strikethrough: true }, option));
     }
-    throw new Error(`${child.type} is not supported.`);
+    unsupportedNode(child, option);
+    return [{
+        type: 'text',
+        text: { content: nodeToMarkdown(child, option) },
+    }];
 }
 
-function addAnnotation(annotations: RichTextAnnotations): (richText: RichTextItemRequest) => RichTextItemRequest {
+function addAnnotation(annotations: RichTextAnnotations, option?: Option): (richText: RichTextItemRequest) => RichTextItemRequest {
     return (richText: RichTextItemRequest) => {
         if (richText.type !== 'text') {
-            throw new Error(`Nested ${richText.type} is not supported.`);
+            throw Error(`Nested ${richText.type} is not supported.`);
         }
         return {
             type: 'text',

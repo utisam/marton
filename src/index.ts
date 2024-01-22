@@ -4,21 +4,22 @@ import { unified } from 'unified';
 import { Compatible } from 'vfile';
 import { rootToBlocks, rootToRichText } from './convert/root';
 import { BlockObjectRequest, RichTextItemRequest } from './notionTypes';
+import Option from './option';
 
 export { rootToBlocks, rootToRichText };
 
-export function markdownToBlocks(file: Compatible): BlockObjectRequest[] {
+export function markdownToBlocks(file: Compatible, option?: Option): BlockObjectRequest[] {
     const root = unified()
         .use(remarkParse)
         .use(remarkGfm)
         .parse(file);
-    return Array.from(rootToBlocks(root));
+    return Array.from(rootToBlocks(root, option));
 }
 
-export function markdownToRichText(file: Compatible): RichTextItemRequest[] {
+export function markdownToRichText(file: Compatible, option?: Option): RichTextItemRequest[] {
     const root = unified()
         .use(remarkParse)
         .use(remarkGfm)
         .parse(file);
-    return Array.from(rootToRichText(root));
+    return Array.from(rootToRichText(root, option));
 }
