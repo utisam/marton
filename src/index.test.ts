@@ -11,6 +11,10 @@ This is body.
 
 > This is quote.
 
+\`\`\`js
+const a = [];
+\`\`\`
+
         `.trim(), { unsupportedError: true });
         expect(result).toStrictEqual([
             {
@@ -44,6 +48,20 @@ This is body.
                     ],
                 },
                 "type": "quote",
+            },
+            {
+                "code": {
+                    "language": "javascript",
+                    "rich_text": [
+                        {
+                            "text": {
+                                "content": "const a = [];",
+                            },
+                            "type": "text",
+                        },
+                    ],
+                },
+                "type": "code",
             },
         ]);
     });
