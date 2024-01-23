@@ -3,7 +3,7 @@ import { BlockObjectRequest, RichTextItemRequest } from '../notionTypes';
 import { headingToBlocks } from './heading';
 import { paragraphToBlocks } from './paragraph';
 import { phrasingContentToRichText } from './phrasing';
-import Option, { unsupportedNode } from '../option';
+import Option, { nodeToMarkdown, unsupportedNode } from '../option';
 import { blockquoteToBlocks } from './blockquote';
 import { thematicBreakToBlocks } from './thematicBreak';
 import { codeToBlocks } from './code';
@@ -28,7 +28,16 @@ function rootContentToBlocks(child: RootContent, option?: Option): Iterable<Bloc
             return paragraphToBlocks(child, option);
         default:
             unsupportedNode(child, option);
-            return [];
+            return [{
+                object: 'block',
+                type: 'paragraph',
+                paragraph: {
+                    rich_text: [{
+                        type: 'text',
+                        text: { content: nodeToMarkdown(child, option) },
+                    }],
+                },
+            }];
     }
 }
 
