@@ -1,6 +1,6 @@
 import { List, ListItem } from 'mdast';
-import { BlockObjectRequest, BlockObjectRequestWithoutChildren, BulletedListItemObjectRequest, NumberedListItemObjectRequest } from '../notionTypes';
-import Option, { unsupportedNode } from '../option';
+import { BlockObjectRequestWithoutChildren, BulletedListItemObjectRequest, NumberedListItemObjectRequest } from '../notionTypes';
+import Option from '../option';
 import { phrasingContentToRichText } from './phrasing';
 
 export function listToBlocks(child: List, option?: Option): Iterable<BlockObjectRequestWithoutChildren> {
