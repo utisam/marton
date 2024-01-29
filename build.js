@@ -8,7 +8,7 @@ const shared = {
     external: Object.keys(pkg.dependencies ?? {}),
     logLevel: 'info',
     minify: true,
-    sourcemap: false,
+    sourcemap: true,
 };
 build({
     ...shared,

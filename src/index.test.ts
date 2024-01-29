@@ -65,6 +65,63 @@ const a = [];
             },
         ]);
     });
+    test('convert bulleted list', () => {
+        const result = markdownToBlocks(`
+* aaa
+  * bbb
+  * ccc
+* ddd
+        `.trim());
+        // console.log(JSON.stringify(result, null, ' '));
+        expect(result).toStrictEqual([
+            {
+                "type": "bulleted_list_item",
+                "bulleted_list_item": {
+                    "rich_text": [
+                        {
+                            "type": "text",
+                            "text": { "content": "aaa" }
+                        }
+                    ],
+                    "children": [
+                        {
+                            "type": "bulleted_list_item",
+                            "bulleted_list_item": {
+                                "rich_text": [
+                                    {
+                                        "type": "text",
+                                        "text": { "content": "bbb" }
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "type": "bulleted_list_item",
+                            "bulleted_list_item": {
+                                "rich_text": [
+                                    {
+                                        "type": "text",
+                                        "text": { "content": "ccc" }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            {
+                "type": "bulleted_list_item",
+                "bulleted_list_item": {
+                    "rich_text": [
+                        {
+                            "type": "text",
+                            "text": { "content": "ddd" }
+                        }
+                    ]
+                }
+            }
+        ]);
+    });
 });
 
 describe('markdownToRichText', () => {

@@ -7,6 +7,7 @@ import Option, { nodeToMarkdown, unsupportedNode } from '../option';
 import { blockquoteToBlocks } from './blockquote';
 import { thematicBreakToBlocks } from './thematicBreak';
 import { codeToBlocks } from './code';
+import { listToBlocks } from './list';
 
 export function* rootToBlocks(root: Root, option?: Option): Iterable<BlockObjectRequest> {
     for (const child of root.children) {
@@ -26,6 +27,8 @@ function rootContentToBlocks(child: RootContent, option?: Option): Iterable<Bloc
             return thematicBreakToBlocks(child, option);
         case 'paragraph':
             return paragraphToBlocks(child, option);
+        case 'list':
+            return listToBlocks(child, option);
         default:
             unsupportedNode(child, option);
             return [{

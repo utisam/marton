@@ -1,8 +1,10 @@
-import { BlockObjectRequest } from '@notionhq/client/build/src/api-endpoints';
+import { BlockObjectRequest, BlockObjectRequestWithoutChildren } from '@notionhq/client/build/src/api-endpoints';
 
-export type { BlockObjectRequest };
+export type { BlockObjectRequest, BlockObjectRequestWithoutChildren };
 
 type Expand<T> = T extends infer O ? { [K in keyof O]: O[K] } : never;
+
+export type BulletedListItemObjectRequest = Expand<BlockObjectRequest & { type: 'bulleted_list_item' }>;
 
 export type CodeObjectRequest = Expand<BlockObjectRequest & { type: 'code' }>;
 export type LanguageRequest = CodeObjectRequest['code']['language'];
@@ -13,6 +15,8 @@ export type Heading1ObjectRequest = Expand<BlockObjectRequest & { type: 'heading
 export type Heading2ObjectRequest = Expand<BlockObjectRequest & { type: 'heading_2' }>;
 export type Heading3ObjectRequest = Expand<BlockObjectRequest & { type: 'heading_3' }>;
 export type HeadingObjectRequest = Heading1ObjectRequest | Heading2ObjectRequest | Heading3ObjectRequest;
+
+export type NumberedListItemObjectRequest = Expand<BlockObjectRequest & { type: 'numbered_list_item' }>;
 
 export type ParagraphObjectRequest = Expand<BlockObjectRequest & { type: 'paragraph' }>;
 
