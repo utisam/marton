@@ -6,13 +6,17 @@
   "main": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
   "scripts": {
+    "prepack": "npm run build",
     "build": "run-p build:*",
     "build:esbuild": "node build.js",
     "build:types": "tsc --declaration --emitDeclarationOnly --declarationDir './dist'",
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
     "test:watch": "npm run test -- --watch"
   },
-  "author": "",
+  "files": [
+    "dist/"
+  ],
+  "author": "Masastoshi Tsushiuma <utisam@gmail.com>",
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^29.5.5",
