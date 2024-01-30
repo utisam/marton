@@ -6,7 +6,7 @@ import { rootToBlocks, rootToRichText } from './convert/root';
 import { BlockObjectRequest, RichTextItemRequest } from './notionTypes';
 import Option from './option';
 
-export { rootToBlocks, rootToRichText };
+export { rootToBlocks, rootToRichText, Option };
 
 export function markdownToBlocks(file: Compatible, option?: Option): BlockObjectRequest[] {
     const root = unified()

@@ -15,26 +15,39 @@ export function codeToBlocks(child: Code, option?: Option): Iterable<CodeObjectR
                         },
                     },
                 ],
-                language: convertLanguage(child.lang) ?? 'plain text',
+                language: convertLanguage(child.lang, option) ?? 'plain text',
             },
         },
     ];
 }
 
-function convertLanguage(lang: string | null | undefined): LanguageRequest | undefined {
+function convertLanguage(lang: string | null | undefined, option?: Option): LanguageRequest | undefined {
     if (!lang) {
         return;
     }
-    lang = lang.toLocaleLowerCase('en-US');
-    if (notionLanguages.has(lang)) {
-        return lang as LanguageRequest;
+
+    const lower = lang.toLocaleLowerCase('en-US');
+    if (notionLanguages.has(lower)) {
+        return lower as LanguageRequest;
     }
-    return languageSynonyms[lang];
+
+    const syn = languageSynonyms[lower];
+    if (syn) {
+        return syn;
+    }
+
+    const message = `Language ${lang} is not supported.`;
+    if (option?.unsupportedError) {
+        throw new Error(message);
+    }
+    option?.logWarn?.(message);
 }
 
 const languageSynonyms: Record<string, LanguageRequest> = {
     'cpp': 'c++',
+    'cs': 'c#',
     'csharp': 'c#',
+    'fs': 'f#',
     'fsharp': 'f#',
     'golang': 'go',
     'js': 'javascript',
