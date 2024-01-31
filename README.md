@@ -1,5 +1,7 @@
 # Marton
 
+[![CI](https://github.com/utisam/marton/actions/workflows/ci.yml/badge.svg)](https://github.com/utisam/marton/actions/workflows/ci.yml)
+
 Convert markdown to notion v2 blocks.
 
 ```js
