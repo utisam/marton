@@ -4,7 +4,7 @@ import { unified } from 'unified';
 import { Compatible } from 'vfile';
 import { rootToBlocks, rootToRichText } from './convert/root';
 import { BlockObjectRequest, RichTextItemRequest } from './notionTypes';
-import Option from './option';
+import type Option from './option';
 
 export { rootToBlocks, rootToRichText, Option };
 
