@@ -1,11 +1,13 @@
 # Marton
 
 [![CI](https://github.com/utisam/marton/actions/workflows/ci.yml/badge.svg)](https://github.com/utisam/marton/actions/workflows/ci.yml)
+![NPM Version](https://img.shields.io/npm/v/@utisam/marton)
+![GitHub License](https://img.shields.io/github/license/utisam/marton)
 
 Convert markdown to notion v2 blocks.
 
 ```js
-import { markdownToBlocks } from 'marton';
+import { markdownToBlocks } from '@utisam/marton';
 
 const blocks = markdownToBlocks(`
 # Test
