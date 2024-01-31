@@ -1,8 +1,8 @@
 # Marton
 
 [![CI](https://github.com/utisam/marton/actions/workflows/ci.yml/badge.svg)](https://github.com/utisam/marton/actions/workflows/ci.yml)
-![NPM Version](https://img.shields.io/npm/v/@utisam/marton)
-![GitHub License](https://img.shields.io/github/license/utisam/marton)
+[![NPM Version](https://img.shields.io/npm/v/@utisam/marton)](https://www.npmjs.com/package/@utisam/marton)
+[![GitHub License](https://img.shields.io/github/license/utisam/marton)](https://github.com/utisam/marton/blob/main/LICENSE)
 
 Convert markdown to notion v2 blocks.
 
