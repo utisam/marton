@@ -1,7 +1,21 @@
 {
-  "name": "marton",
+  "name": "@utisam/marton",
   "version": "0.0.0",
   "description": "Convert markdown to notion blocks",
+  "author": "Masastoshi Tsushiuma <utisam@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:utisam/marton.git"
+  },
+  "homepage": "https://github.com/utisam/marton",
+  "bugs": {
+    "url": "https://github.com/utisam/marton/issues"
+  },
+  "keywords": [
+    "notion",
+    "markdown"
+  ],
   "type": "module",
   "main": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -16,8 +30,6 @@
   "files": [
     "dist/"
   ],
-  "author": "Masastoshi Tsushiuma <utisam@gmail.com>",
-  "license": "MIT",
   "devDependencies": {
     "@types/jest": "^29.5.5",
     "esbuild": "^0.19.4",
