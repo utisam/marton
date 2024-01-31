@@ -1,6 +1,6 @@
 # Marton
 
-Convert markdown to notion blocks.
+Convert markdown to notion v2 blocks.
 
 ```js
 import { markdownToBlocks } from 'marton';

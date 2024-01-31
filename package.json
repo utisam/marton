@@ -1,7 +1,7 @@
 {
   "name": "@utisam/marton",
   "version": "0.0.0",
-  "description": "Convert markdown to notion blocks",
+  "description": "Convert markdown to notion v2 blocks",
   "author": "Masastoshi Tsushiuma <utisam@gmail.com>",
   "license": "MIT",
   "repository": {
