@@ -12,10 +12,7 @@
   "bugs": {
     "url": "https://github.com/utisam/marton/issues"
   },
-  "keywords": [
-    "notion",
-    "markdown"
-  ],
+  "keywords": ["notion", "markdown"],
   "type": "module",
   "main": "./dist/index.esm.js",
   "types": "./dist/index.d.ts",
@@ -27,23 +24,22 @@
     "test": "NODE_OPTIONS='--experimental-vm-modules' jest",
     "test:watch": "npm run test -- --watch"
   },
-  "files": [
-    "dist/"
-  ],
+  "files": ["dist/"],
   "devDependencies": {
+    "@biomejs/biome": "1.8.1",
     "@types/jest": "^29.5.5",
     "esbuild": "^0.19.4",
     "esbuild-jest": "^0.5.0",
     "jest": "^29.7.0",
     "npm-run-all": "^4.1.5",
-    "typescript": "^5.2.2",
-    "unified": "^11.0.3"
+    "typescript": "^5.2.2"
   },
   "dependencies": {
     "@notionhq/client": "^2.2.13",
     "mdast-util-gfm": "^3.0.0",
     "mdast-util-to-markdown": "^2.1.0",
     "remark-gfm": "^4.0.0",
-    "remark-parse": "^11.0.0"
+    "remark-parse": "^11.0.0",
+    "unified": "^11.0.4"
   }
 }
