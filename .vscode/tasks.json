@@ -1,0 +1,21 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "npm",
+      "script": "build",
+      "group": "build",
+      "problemMatcher": [],
+      "label": "npm: build",
+      "detail": "run-p build:*"
+    },
+    {
+      "type": "npm",
+      "script": "test:watch",
+      "group": "test",
+      "problemMatcher": [],
+      "label": "npm: test:watch",
+      "detail": "jest --watch"
+    }
+  ]
+}
