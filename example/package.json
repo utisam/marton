@@ -1,0 +1,16 @@
+{
+  "name": "marton-example",
+  "version": "0.0.0",
+  "description": "Example of @utisam/marton",
+  "type": "module",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Masastoshi Tsushiuma <utisam@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@utisam/marton": "^0.1.1"
+  }
+}
