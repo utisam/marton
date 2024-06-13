@@ -31,7 +31,7 @@ console.log(JSON.stringify(blocks, null, "  "));
 
 #### Returns
 
-Array of [Notion Block](https://developers.notion.com/reference/block) object.
+Array of [Notion Block] object.
 
 ### `markdownToRichText(file[, option])`
 
@@ -43,7 +43,7 @@ Array of [Notion Block](https://developers.notion.com/reference/block) object.
 
 #### Returns
 
-Array of [Notion Rich Text](https://developers.notion.com/reference/rich-text) object.
+Array of [Notion Rich Text] object.
 
 ### `Option`
 
@@ -56,4 +56,33 @@ Array of [Notion Rich Text](https://developers.notion.com/reference/rich-text) o
 * `unsupportedError?` (`boolean`)
   — Error will be thrown when an unimplemented Markdown syntax was found.
 
+### `rootToBlocks(root[, option])`
+
+#### Parameters
+
+* `root` ([mdast.Root])
+  — virtual file representing the input document
+* `option` ([Option](#option))
+  — virtual file representing the input document
+
+#### Returns
+
+Iterable of [Notion Block] object.
+
+### `rootToRichText(root[, option])`
+
+#### Parameters
+
+* `root` ([mdast.Root])
+  — virtual file representing the input document
+* `option` ([Option](#option))
+  — virtual file representing the input document
+
+#### Returns
+
+Iterable of [Notion Rich Text] object.
+
+[Notion Block]: https://developers.notion.com/reference/block
+[Notion Rich Text]: https://developers.notion.com/reference/rich-text
+[mdast.Root]: https://www.npmjs.com/package/mdast#root
 [vfile.Compatible]: https://www.npmjs.com/package/vfile#compatible
